@@ -29,7 +29,7 @@ class ProjectAPIView(views.APIView, PaginationHandlerMixin):
     """
 
     model_class        = models.Project
-    serializer_class   = serializers.ProjectSerialier
+    serializer_class   = serializers.ProjectSerializer
     permission_classes = [permissions.AllowAny,]
     pagination_class   = BasicPagination
 
@@ -50,7 +50,7 @@ class ProjectAPIView(views.APIView, PaginationHandlerMixin):
             context.update({'deep': True})
 
         pagination = self.get_pagination_data(
-            query, limit_val, self.serializer_class
+            query, limit_val, self.serializer_class, context=context
         )
         return Response(pagination, status=status.HTTP_200_OK)
 

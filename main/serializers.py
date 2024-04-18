@@ -11,7 +11,7 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProjectSerialier(serializers.ModelSerializer):
+class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = models.Project

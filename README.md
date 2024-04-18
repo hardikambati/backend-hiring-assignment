@@ -44,6 +44,18 @@ This system consists of one service :
     - collect all static files in /static/ folder
 4. The API's can be accessed on the swagger panel [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
 
+
+<br>
+
+## Accessing the Admin Panel
+
+1. Superuser is already created, open the admin panel [http://localhost:8000/admin/](http://localhost:8000/admin/)
+2. Use credentials : 
+    ```
+    username : admin
+    password : admin
+    ```
+
 <br>
 
 ## Directory Structure
