@@ -49,7 +49,7 @@ This system consists of one service :
 ## Directory Structure
 
 ```
-root:core
+root
 |
 |----- core
 |       |----- urls.py
