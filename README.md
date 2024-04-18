@@ -1,4 +1,4 @@
-# Project-Task Management API Backend | Pixeldust
+# Project & Task Management API's | Pixeldust
 `v1.0.0`
 
 ## Project Description
