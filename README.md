@@ -37,7 +37,7 @@ This system consists of one service :
     ```
     docker-compose up --build
     ```
-3. The app will automatically do the following tasks (defined in `setup.py` file)
+3. On startup, the setup file will automatically do the following tasks (defined in `setup.py` file)
     - migrate the changes
     - create superuser
     - create base user
