@@ -80,7 +80,6 @@ root
 |        |----- setup.py
 |
 |----- utils
-|        |----- config.py
 |        |----- helpers.py
 |        |----- pagination.py
 |        |----- docs
@@ -106,5 +105,7 @@ root
 ## Important URL's
 
 Swagger Panel : [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
+
+Admin Panel : [http://localhost:8000/admin/](http://localhost:8000/admin/)
 
 Developed by : Hardik Ambati [LinkedIn](https://www.linkedin.com/in/hardik-ambati)

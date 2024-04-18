@@ -21,6 +21,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
 
         if self.context.get('deep', False):
+            # attach tasks to a particular project
             task_instances = instance.task_set.all()
             data.update({
                 'tasks': TaskSerializer(task_instances, many=True).data

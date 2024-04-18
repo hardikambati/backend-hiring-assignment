@@ -34,7 +34,7 @@ CREATE_PROJECT = {
             properties={
                 'name': openapi.Schema(type=openapi.TYPE_STRING, title='name'),
                 'description': openapi.Schema(type=openapi.TYPE_STRING, title='description'),
-                'client': openapi.Schema(type=openapi.TYPE_INTEGER, title='client'),
+                'client': openapi.Schema(type=openapi.TYPE_INTEGER, title='client', default=2),
             },
             required=['name', 'client'], 
     ),

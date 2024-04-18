@@ -3,10 +3,16 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class BasicPagination(PageNumberPagination):
+    """
+    Base class for adding `limit` in query param
+    """
     page_size_query_param = 'limit'
 
 
 class PaginationHandlerMixin(object):
+    """
+    Used for creating paginated data
+    """
 
     @property
     def paginator(self):

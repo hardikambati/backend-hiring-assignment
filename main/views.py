@@ -36,6 +36,9 @@ class ProjectAPIView(views.APIView, PaginationHandlerMixin):
 
     @swagger_auto_schema(**project_docs.LIST_PROJECT)
     def get(self, request, *args, **kwargs):
+        """
+        Retrieve projects in paginated format
+        """
         limit_val = request.query_params.get("limit", None)
 
         query = self.model_class.objects.filter(
@@ -57,6 +60,9 @@ class ProjectAPIView(views.APIView, PaginationHandlerMixin):
 
     @swagger_auto_schema(**project_docs.CREATE_PROJECT)
     def post(self, request, *args, **kwargs):
+        """
+        Create a project
+        """
         data = request.data
 
         serializer = self.serializer_class(data=data)
@@ -69,6 +75,9 @@ class ProjectAPIView(views.APIView, PaginationHandlerMixin):
     @swagger_auto_schema(**project_docs.DELETE_PROJECT)
     @app_decorators.validate_project(lookup_key='id')
     def delete(self, request, *args, **kwargs):
+        """
+        Delete a project
+        """
         instance = kwargs['project_instance']
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -88,6 +97,9 @@ class TaskAPIView(views.APIView, PaginationHandlerMixin):
 
     @swagger_auto_schema(**task_docs.LIST_TASK)
     def get(self, request, *args, **kwargs):
+        """
+        Retrieve tasks in paginated format
+        """
         id = request.query_params.get('id')
         limit_val = request.query_params.get("limit", None)
 
@@ -104,6 +116,9 @@ class TaskAPIView(views.APIView, PaginationHandlerMixin):
     
     @swagger_auto_schema(**task_docs.CREATE_TASK)
     def post(self, request, *args, **kwargs):
+        """
+        Create a task
+        """
         data = request.data
 
         serializer = self.serializer_class(data=data)
@@ -116,6 +131,9 @@ class TaskAPIView(views.APIView, PaginationHandlerMixin):
     @swagger_auto_schema(**task_docs.UPDATE_TASK)
     @app_decorators.validate_task(lookup_key='id')
     def patch(self, request, *args, **kwargs):
+        """
+        Update the status of a task
+        """
         instance = kwargs['task_instance']
         data = request.data
         
@@ -139,6 +157,9 @@ class TaskAPIView(views.APIView, PaginationHandlerMixin):
     @swagger_auto_schema(**task_docs.DELETE_TASK)
     @app_decorators.validate_task(lookup_key='id')
     def delete(self, request, *args, **kwargs):
+        """
+        Delete a task
+        """
         instance = kwargs['task_instance']
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

@@ -12,6 +12,9 @@ from . import models
 
 
 def validate_project(*f_args, **f_kwargs):
+    """
+    decorator: used for validation of a project based on `lookup_key`
+    """
     def wrapper(func):
         def check(*args, **kwargs):
             request = request_from_args(args)
@@ -41,6 +44,9 @@ def validate_project(*f_args, **f_kwargs):
 
 
 def validate_task(*f_args, **f_kwargs):
+    """
+    decorator: used for validation of a task based on `lookup_key`
+    """
     def wrapper(func):
         def check(*args, **kwargs):
             request = request_from_args(args)
