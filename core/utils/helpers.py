@@ -4,9 +4,9 @@ def pop_from_data(pop_list, data) -> dict:
     Removes useless data in provided data dict
     """
     
-    for _ in pop_list:
-        if _ in data:
-            data.pop(_)
+    for param in pop_list:
+        if param in data:
+            data.pop(param)
     return data
 
 

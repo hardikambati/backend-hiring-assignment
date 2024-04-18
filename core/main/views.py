@@ -16,10 +16,14 @@ from utils.docs import (
     project as project_docs,
     task as task_docs,
 )
+from utils.pagination import (
+    BasicPagination,
+    PaginationHandlerMixin,
+)
 from utils import helpers
 
 
-class ProjectAPIView(views.APIView):
+class ProjectAPIView(views.APIView, PaginationHandlerMixin):
     """
     API view for project management
     """
@@ -27,10 +31,13 @@ class ProjectAPIView(views.APIView):
     model_class        = models.Project
     serializer_class   = serializers.ProjectSerialier
     permission_classes = [permissions.AllowAny,]
+    pagination_class   = BasicPagination
 
 
     @swagger_auto_schema(**project_docs.LIST_PROJECT)
     def get(self, request, *args, **kwargs):
+        limit_val = request.query_params.get("limit", None)
+
         query = self.model_class.objects.filter(
             end_date__isnull=True
         )
@@ -42,10 +49,10 @@ class ProjectAPIView(views.APIView):
             query = query.filter(id=id)
             context.update({'deep': True})
 
-        serializer = self.serializer_class(
-            query, many=True, context=context
+        pagination = self.get_pagination_data(
+            query, limit_val, self.serializer_class
         )
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(pagination, status=status.HTTP_200_OK)
 
 
     @swagger_auto_schema(**project_docs.CREATE_PROJECT)
@@ -68,7 +75,7 @@ class ProjectAPIView(views.APIView):
 
 
 
-class TaskAPIView(views.APIView):
+class TaskAPIView(views.APIView, PaginationHandlerMixin):
     """
     API view for task management
     """
@@ -76,20 +83,23 @@ class TaskAPIView(views.APIView):
     model_class        = models.Task
     serializer_class   = serializers.TaskSerializer
     permission_classes = [permissions.AllowAny,]
+    pagination_class   = BasicPagination
 
 
     @swagger_auto_schema(**task_docs.LIST_TASK)
     def get(self, request, *args, **kwargs):
-        query = self.model_class.objects.all()
         id = request.query_params.get('id')
+        limit_val = request.query_params.get("limit", None)
+
+        query = self.model_class.objects.all()
 
         if id:
             query = query.filter(id=id)
 
-        serializer = self.serializer_class(
-            query, many=True
+        pagination = self.get_pagination_data(
+            query, limit_val, self.serializer_class
         )
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(pagination, status=status.HTTP_200_OK)
     
     
     @swagger_auto_schema(**task_docs.CREATE_TASK)
